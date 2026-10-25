@@ -4,6 +4,11 @@ import android.content.Context
 import org.fossify.commons.helpers.BaseConfig
 import org.fossify.home.R
 
+// Preferences key in Config.kt
+var moveSearchBarToBottom: Boolean
+    get() = prefs.getBoolean(MOVE_SEARCH_BAR_TO_BOTTOM, false)
+    set(moveSearchBarToBottom) = prefs.edit().putBoolean(MOVE_SEARCH_BAR_TO_BOTTOM, moveSearchBarToBottom).apply()
+
 class Config(context: Context) : BaseConfig(context) {
     companion object {
         fun newInstance(context: Context) = Config(context)
