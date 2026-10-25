@@ -101,6 +101,23 @@ import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
 
+
+
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
+
+private fun onSearchQueryChanged(query: String) {
+    val filteredApps = allApps.filter { it.title.contains(query, ignoreCase = true) }
+    
+    // Cast to LinearLayoutManager or GridLayoutManager to access stackFromEnd
+    (binding.appDrawerGrid.layoutManager as? LinearLayoutManager)?.let { layoutManager ->
+        layoutManager.stackFromEnd = query.isNotEmpty()
+    }
+    
+    appAdapter.updateApps(filteredApps)
+}
+
+
 class MainActivity : SimpleActivity(), FlingListener {
     private var mTouchDownX = -1
     private var mTouchDownY = -1
